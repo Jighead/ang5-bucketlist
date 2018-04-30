@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 /* importing aniniimations we want to use in this component */
 import { trigger, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
+import { DataService } from '../data.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -36,20 +37,25 @@ export class HomeComponent implements OnInit {
   // stores our goals
   goals = [];
 
-  constructor() { }
+  constructor(private _data: DataService) { } // dependecy inject out data service. _data is instance of service.
 
+  // on page load
   ngOnInit() {
     this.itemCount = this.goals.length; // on load set the itemCount
+    this._data.goal.subscribe(res => this.goals = res);
+    this._data.changeGoal(this.goals);
   }
 
   addItem() {
     this.goals.push(this.goalText); // push onto the array
     this.goalText = ''; // clear the goaltext var and form
     this.itemCount = this.goals.length; // update count
+    this._data.changeGoal(this.goals);
   }
   removeItem(item) {
     this.goals.splice(item, 1); // remove item from array
     this.itemCount = this.goals.length; // update the account
+    this._data.changeGoal(this.goals);
   }
 
 }

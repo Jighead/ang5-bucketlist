@@ -1,3 +1,11 @@
 <p>About works. </p>
 <p>This is the Router module in action! This example shows both using routes via main navigation in the app-routing.module.ts and a click event method created in the about.component.ts file.</p>
 <p><a href="" (click)="goToHomePage()">Take Me Back Home!</a></p>
+
+
+<p>Below we are also showing an example of using services to display shared data, in this case our goals array, across pages.</p>
+  <!-- loop out goals array for output,  on click run remove item method -->
+
+  <p class="life-container" *ngFor="let goal of goals; let i = index">
+      {{goal}}
+  </p>
