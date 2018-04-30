@@ -9,7 +9,7 @@ const routes: Routes = [
   {  path: '',
     component: HomeComponent
   },
-  {  path: 'about',
+  {  path: 'about/:id',
     component: AboutComponent
   }
 ];
